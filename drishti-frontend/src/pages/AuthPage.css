@@ -1,0 +1,325 @@
+/* 1. THE MAIN PAGE BACKGROUND (Amrita Style) */
+.auth-page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  /* Using your logo as the full page watermark */
+  background-image: url('../components/Amritacollege.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dark Dimmer for the full page */
+.auth-page-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.85); /* Dark translucent overlay */
+  z-index: 1;
+}
+
+/* 2. THE LOGIN CARD CONTAINER */
+.auth-container {
+  border-radius: 30px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.4), 0 10px 10px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+  width: 850px;
+  max-width: 95%;
+  min-height: 600px;
+  background-color: #FFFFFF; /* Base card color */
+  z-index: 10; /* Sits above the page dimmer */
+}
+
+.right-panel-active .auth-image-bg {
+  /* Moves to the center of the right half when sliding */
+  transform: translate(125%, -50%);
+}
+
+/* 4. FORM STYLES */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+  width: 50%;
+}
+
+.auth-input:focus {
+  border-color: #4949FF;
+}
+
+.auth-button {
+  border-radius: 25px;
+  background-color: #c2185b;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+}
+
+.auth-button:active {
+  transform: scale(0.95);
+}
+
+/* 5. SLIDING LOGIC */
+.student-login-container {
+  left: 0;
+  z-index: 2;
+}
+
+.teacher-login-container {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.right-panel-active .student-login-container {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.right-panel-active .teacher-login-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* 6. OVERLAY PANEL (BLUE SIDE) */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: #4949FF;
+  color: #FFFFFF;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left { transform: translateX(-20%); }
+.right-panel-active .overlay-left { transform: translateX(0); }
+
+.overlay-right { right: 0; transform: translateX(0); }
+.right-panel-active .overlay-right { transform: translateX(20%); }
+
+.ghost-button {
+  background-color: transparent;
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
+  padding: 10px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.auth-page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-page-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.85);
+  z-index: 1;
+}
+
+.content-on-top {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.auth-container {
+  border-radius: 30px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  width: 850px;
+  max-width: 95%;
+  min-height: 600px;
+  background-color: #FFFFFF;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+  width: 50%;
+}
+
+/* Default Student Position */
+.student-login-container {
+  left: 0;
+  z-index: 2;
+  opacity: 1;
+}
+
+/* Default School Position (Hidden) */
+.teacher-login-container {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* When Right Panel is Active (School Mode) */
+.right-panel-active .student-login-container {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.right-panel-active .teacher-login-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.auth-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
+  text-align: center;
+}
+
+.auth-input {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 12px 15px;
+  margin: 6px 0;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+}
+
+.auth-button {
+  border-radius: 25px;
+  background-color: #c2185b;
+  color: #FFFFFF;
+  padding: 12px 45px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  margin-top: 15px;
+}
+
+/* Overlay Styling */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: #c2185b;
+  color: #FFFFFF;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left { transform: translateX(-20%); }
+.right-panel-active .overlay-left { transform: translateX(0); }
+.overlay-right { right: 0; transform: translateX(0); }
+.right-panel-active .overlay-right { transform: translateX(20%); }
+
+.ghost-button {
+  background-color: transparent;
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
