@@ -1,8 +1,34 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
+import ReviewCard from '../components/ReviewCard';
 
 const LandingPage = () => {
+  // Dummy data for owners approval
+  const dummyReviews = [
+    {
+      id: 1,
+      name: "Abhijith S. Nair",
+      role: "Principal, St. Mary's School",
+      rating: 5,
+      comment: "The offline session conducted at our premises was excellent. Our students gained real insights into the management world."
+    },
+    {
+      id: 2,
+      name: "Meera Krishnan",
+      role: "12th Commerce Student",
+      rating: 4,
+      comment: "I joined the Saturday online batch. The certificate I received helped me during my college interview!"
+    },
+    {
+      id: 3,
+      name: "George Kutty",
+      role: "School Administrator",
+      rating: 5,
+      comment: "Seamless booking process. We selected our preferred dates and the college coordinated perfectly for the campus visit."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white font-sans">
       <Navbar />
@@ -32,18 +58,16 @@ const LandingPage = () => {
           </p>
         </div>
 
-        {/* Right Side: Visual Collage (Grid) */}
+        {/* Right Side: Visual Collage */}
         <div className="grid grid-cols-3 grid-rows-3 gap-4 h-[550px]">
           <div className="bg-yellow-400 rounded-full scale-90"></div>
           <div className="bg-pink-100 rounded-2xl"></div>
           <div className="bg-gray-100 rounded-2xl overflow-hidden shadow-lg"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400" className="object-cover h-full w-full" alt="Commerce"/></div>
-
           <div className="col-span-2 bg-blue-50 rounded-2xl overflow-hidden relative group">
             <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600" className="object-cover h-full w-full group-hover:scale-105 transition duration-500" alt="Management"/>
             <div className="absolute top-4 left-4 bg-yellow-300 px-4 py-1 font-bold -rotate-2">COMMERCE</div>
           </div>
           <div className="bg-red-500 rounded-full scale-75"></div>
-
           <div className="bg-cyan-400 rounded-full scale-95"></div>
           <div className="bg-orange-50 rounded-br-[80px] rounded-tl-2xl"></div>
           <div className="bg-gray-800 rounded-2xl overflow-hidden relative shadow-2xl">
@@ -52,6 +76,30 @@ const LandingPage = () => {
           </div>
         </div>
       </main>
+
+      {/* Review Section */}
+      <section className="bg-gray-50 py-24 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-12">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">
+              What Our Community Says
+            </h2>
+            <div className="w-20 h-1.5 bg-blue-700 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {dummyReviews.map((rev) => (
+              <ReviewCard
+                key={rev.id}
+                name={rev.name}
+                role={rev.role}
+                rating={rev.rating}
+                comment={rev.comment}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Stats Section */}
       <footer className="max-w-6xl mx-auto px-12 py-12 flex flex-wrap justify-between items-center border-t border-gray-100 gap-8">

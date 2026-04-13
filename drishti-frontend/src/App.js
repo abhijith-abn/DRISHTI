@@ -6,11 +6,8 @@ import CourseSelection from './pages/CourseSelection';
 import QuizPage from './pages/QuizPage';
 import JoinBatch from './pages/JoinBatch';
 import AdminDashboard from './pages/AdminDashboard';
-// Note: Ensure the filename on disk is exactly 'about.js' or rename to 'About.js'
-import About from './components/about'; 
-
-import Contact from './pages/contact'; // check file case sensitivity
-// ... inside routes block ...
+import About from './components/about';
+import Contact from './pages/contact';
 
 function App() {
   return (
@@ -22,10 +19,8 @@ function App() {
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/join" element={<JoinBatch />} />
         <Route path="/admin" element={<AdminDashboard />} />
-        {/* MOVED THIS INSIDE ROUTES */}
-        <Route path="/about" element={<About />} />
-      
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/contact" element={<Contact/>} />
       </Routes>
     </Router>
   );

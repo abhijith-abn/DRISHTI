@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CourseCard = ({ course, userRole, onBookClick }) => {
+const CourseCard = ({ course, userRole, onBookClick, onEnrollClick }) => {
   return (
     <div className="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-gray-100 max-w-sm hover:scale-[1.02] transition-transform duration-300">
-      {/* Top Image Section with Sample Video Button */}
+      {/* Top Image Section */}
       <div className="relative h-44 bg-slate-800 flex items-center justify-center">
         <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500')] bg-cover bg-center"></div>
         <button className="relative z-10 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/30 text-white text-sm font-bold hover:bg-white/30 transition">
@@ -11,15 +11,11 @@ const CourseCard = ({ course, userRole, onBookClick }) => {
         </button>
       </div>
 
-      {/* Course Details */}
       <div className="p-6">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-xl font-bold text-slate-900 leading-tight">{course.title}</h3>
-          {/* Inside CourseCard.js, replace the span with this: */}
           <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase ${
-            course.type === 'Specialised'
-              ? 'bg-pink-100 text-[#c2185b]'
-              : 'bg-blue-100 text-blue-700'
+            course.type === 'Specialised' ? 'bg-pink-100 text-[#c2185b]' : 'bg-blue-100 text-blue-700'
           }`}>
             {course.type}
           </span>
@@ -52,15 +48,22 @@ const CourseCard = ({ course, userRole, onBookClick }) => {
           <p className="text-sm font-black text-slate-800">{course.nextDate}</p>
         </div>
 
-        {userRole === 'SCHOOL' &&
-                      <button
-                        onClick={onBookClick} // 5. Trigger the function here
-                        className="w-full bg-[#c2185b] text-white py-4 rounded-2xl font-bold ..."
-                      >
-                        Book Offline Session
-                      </button>
-                    }
-
+        {/* ACTION BUTTONS BASED ON ROLE */}
+        {userRole === "STUDENT" ? (
+          <button
+            onClick={() => onEnrollClick(course.title)}
+            className="w-full bg-blue-700 text-white py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-800 transition-all shadow-lg shadow-blue-100"
+          >
+            Book Online Seat
+          </button>
+        ) : (
+          <button
+            onClick={onBookClick}
+            className="w-full bg-[#c2185b] text-white py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-pink-800 transition-all shadow-lg shadow-pink-100"
+          >
+            Request Institutional Visit
+          </button>
+        )}
       </div>
     </div>
   )};
