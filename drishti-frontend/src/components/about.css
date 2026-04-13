@@ -1,0 +1,357 @@
+/* --- Root Variables & Reset --- */
+
+:root {
+  --navy: #0f172a; /* Deep Navy from design */
+  --gold: #facc15; /* Golden Yellow from design */
+  --crimson: #c2185b; /* Drishti Crimson accent */
+  --white: #ffffff;
+  --text-primary: #1e293b;
+  --text-muted: #64748b;
+  
+  --glass: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(20px);
+  --shadow-light: 0 10px 30px rgba(15, 23, 42, 0.05);
+  
+  --font-hero: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+.about-drishti-wrapper {
+  background-color: #fafafa;
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+}
+
+/* --- Decorative Elements & Global classes --- */
+.gold-text { color: var(--gold); }
+.glass {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03);
+}
+
+/* --- 1. HERO SECTION --- */
+.about-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 100px 20px;
+}
+
+/* Wave Background (Placeholder pattern, add image if available) */
+.bg-waves {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--navy);
+  opacity: 0.95;
+  z-index: 1;
+}
+
+/* Gold Dust Particles Animation */
+.gold-dust {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: radial-gradient(var(--gold) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.2;
+  animation: dustFloat 10s infinite linear;
+  z-index: 2;
+}
+
+@keyframes dustFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-family: var(--font-hero);
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.hero-p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.hero-buttons { display: flex; gap: 20px; }
+.btn-explore {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-learn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  padding: 15px 35px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Hero Right: Image & Floating Card Styling */
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  height: 450px;
+  border-radius: 40px;
+}
+
+.hero-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills space correctly */
+  border-radius: 40px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+}
+
+.floating-card {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  z-index: 20; /* Sits on top of the image */
+  padding: 30px;
+  border-radius: 25px;
+  color: var(--white);
+  animation: cardFloat 5s infinite ease-in-out;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.card-val { font-size: 3rem; font-weight: 900; margin: 0; }
+.card-unit { font-size: 1.5rem; font-weight: 500; }
+.card-desc { font-size: 1.1rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px; }
+.card-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* --- 2. CORE PHILOSOPHY --- */
+.about-intro {
+  padding: 80px 20px;
+}
+
+.about-intro .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.intro-text h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 15px;
+}
+
+.intro-text p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.btn-read-more {
+  background: white;
+  border: 2px solid #e2e8f0;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.core-values { display: flex; flex-direction: column; gap: 20px; }
+.value-card {
+  padding: 30px;
+  border-radius: 20px;
+  display: flex; gap: 20px; align-items: center;
+}
+
+.icon-wrap {
+  width: 70px; height: 70px;
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+}
+
+.bg-gold-fade { background: linear-gradient(to bottom right, #fef3c7, #fde68a); color: #f59e0b; }
+.bg-blue-fade { background: linear-gradient(to bottom right, #dbeafe, #93c5fd); color: #1d4ed8; }
+
+.value-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; }
+.value-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* --- 3. SESSIONS GRID --- */
+.sessions-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.section-label {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.session-card {
+  padding: 30px;
+  border-radius: 25px;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.s-icon { font-size: 2rem; }
+.session-card h4 { font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--navy); }
+.session-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+.hover-float:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+
+/* --- 4. VISION / MISSION FOOTER --- */
+.vision-mission-footer {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 100px 20px;
+}
+
+.dark-wave-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--navy);
+  opacity: 0.95;
+  z-index: 1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1100px;
+  margin-bottom: 50px;
+}
+
+.left-vision, .right-mission {
+  padding: 40px;
+  border-radius: 30px;
+  color: var(--white);
+}
+
+.section-sub-label {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.left-vision p { color: rgba(255, 255, 255, 0.8); line-height: 1.8; }
+
+.right-mission ul { list-style: none; padding: 0; }
+.right-mission li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.b-mark { font-size: 1.2rem; }
+
+.join-movement {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: var(--white);
+  padding-top: 40px;
+}
+
+.join-movement h3 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+.join-movement p { color: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 0 auto; }
+
+/* --- Scroll-Triggered Animation Logic --- */
+.animate-on-scroll {
+  opacity: 0;
+  transition: all 1s ease-out;
+}
+
+/* Base animation states */
+.fade-in-down { transform: translateY(-30px); }
+.slide-up { transform: translateY(40px); }
+.fade-in { }
+.zoom-in { transform: scale(0.9); }
+
+/* Active animation state (triggered by Intersection Observer) */
+.animate-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Sequential delay for grid cards */
+.grid-container .session-card.animate-active {
+  opacity: 0;
+  animation: cardFadeIn 0.8s forwards;
+}
+
+@keyframes cardFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .hero-content, .about-intro .container, .grid-container, .footer-content {
+    grid-template-columns: 1fr;
+  }
+  .hero-title { font-size: 3.5rem; }
+}

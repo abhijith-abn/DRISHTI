@@ -59,11 +59,11 @@ const CourseCard = ({ course, userRole, onBookClick }) => {
                       >
                         Book Offline Session
                       </button>
-                    )}
+                    }
 
       </div>
     </div>
-  );
-};
+  )};
+
 
 export default CourseCard;

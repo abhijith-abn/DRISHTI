@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import drishtiLogo from './drishtilogo.png';
 
+
+
 const Navbar = () => {
   return (
+    
     <nav className="flex justify-between items-center px-8 py-3 max-w-7xl mx-auto bg-white sticky top-0 z-50">
 
       {/* Combined Logo & Text Section */}
@@ -28,6 +31,7 @@ const Navbar = () => {
       <div className="hidden md:flex space-x-10 font-semibold text-gray-600 items-center">
         <Link to="/courses" className="hover:text-blue-600 transition-colors">Course</Link>
         <Link to="/about" className="hover:text-blue-600 transition-colors">About</Link>
+       
         <Link to="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
       </div>
 
