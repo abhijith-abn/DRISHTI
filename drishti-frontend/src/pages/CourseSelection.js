@@ -53,11 +53,9 @@ const CourseSelection = () => {
         <div className="bg-shape shape3 opacity-20"></div>
         <div className="gold-line gold-line1 opacity-30"></div>
         <div className="gold-line gold-line2 opacity-30"></div>
-        {/* Extra Radial Glows for smoothness */}
+
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px]" />
       </div>
-
-      <Navbar />
 
       <div className="max-w-7xl mx-auto pt-32 px-6 relative z-10">
 
