@@ -31,7 +31,6 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans">
-      <Navbar />
 
       <main className="max-w-7xl mx-auto px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-12 pb-20">
         {/* Left Side: Text & Search */}

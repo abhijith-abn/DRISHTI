@@ -7,11 +7,11 @@
   --white: #ffffff;
   --text-primary: #1e293b;
   --text-muted: #64748b;
-  
+
   --glass: rgba(255, 255, 255, 0.2);
   --glass-blur: blur(20px);
   --shadow-light: 0 10px 30px rgba(15, 23, 42, 0.05);
-  
+
   --font-hero: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -20,11 +20,9 @@
   background-color: #fafafa;
   color: var(--text-primary);
   min-height: 100vh;
-  overflow-x: hidden;
   font-family: var(--font-body);
 }
 
-/* --- Decorative Elements & Global classes --- */
 .gold-text { color: var(--gold); }
 .glass {
   background: var(--glass);

@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import './about.css';
+import '../About.css';
 import Navbar from '../components/Navbar';
-// 1. Import your saved image file
-import heroImage from './sasint-students-1807505.jpg'; 
+import heroImage from '../components/sasint-students-1807505.jpg';
 
 const About = () => {
 
-  // Logic for Scroll-Triggered Animations (standard Intersection Observer)
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -35,8 +33,7 @@ const About = () => {
 
   return (
     <div className="about-drishti-wrapper">
-      <Navbar />
-      
+
       {/* 1. HERO SECTION */}
       <section className="about-hero animate-on-scroll fade-in-down">
         {/* Background Waves with Gold Dust */}
@@ -47,8 +44,8 @@ const About = () => {
           <div className="hero-left">
             <h1 className="hero-title">See Beyond.<br />Learn <span className="gold-text">Beyond.</span><br />Lead <span className="gold-text">Beyond.</span></h1>
             <p className="hero-p">
-              Drishti is a student-led initiative committed to empowering individuals through 
-              practical knowledge in commerce, finance, and life skills. Bridge the gap between 
+              Drishti is a student-led initiative committed to empowering individuals through
+              practical knowledge in commerce, finance, and life skills. Bridge the gap between
               academic learning and real-world decision making.
             </p>
             <div className="hero-buttons">
@@ -61,7 +58,7 @@ const About = () => {
             {/* The Image from the design with correct variable */}
             <div className="hero-image-container">
               <img src={heroImage} alt="Students Learning" className="hero-main-img" />
-              
+
               {/* Floating Stat Card - Glassmorphism */}
               <div className="floating-card glass">
                 <p className="card-val">10+ <span className="card-unit">Topics</span></p>
@@ -79,8 +76,8 @@ const About = () => {
           <div className="intro-text">
             <h2>About Drishti</h2>
             <p>
-              At Drishti, we believe the right perspective can transform opportunities. Through 
-              knowledge, discussion, and mentorship, we nurture financially aware, responsible, 
+              At Drishti, we believe the right perspective can transform opportunities. Through
+              knowledge, discussion, and mentorship, we nurture financially aware, responsible,
               and future-ready individuals.
             </p>
             <button className="btn-read-more">Read More</button>
@@ -130,8 +127,8 @@ const About = () => {
           <div className="left-vision glass">
             <h3 className="section-sub-label gold-text">Vision</h3>
             <p>
-              To create a financially aware, empowered generation equipped with practical 
-              knowledge, critical thinking, and leadership skills to navigate the evolving 
+              To create a financially aware, empowered generation equipped with practical
+              knowledge, critical thinking, and leadership skills to navigate the evolving
               world with confidence.
             </p>
           </div>

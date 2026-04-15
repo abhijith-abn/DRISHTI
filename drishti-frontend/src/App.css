@@ -1,3 +1,44 @@
+:root {
+  --navy: #0f172a; /* Deep Navy from design */
+  --gold: #facc15; /* Golden Yellow from design */
+  --crimson: #c2185b; /* Drishti Crimson accent */
+  --white: #ffffff;
+  --text-primary: #1e293b;
+  --text-muted: #64748b;
+
+  --glass: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(20px);
+  --shadow-light: 0 10px 30px rgba(15, 23, 42, 0.05);
+
+  --font-hero: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+/* --- Global Drishti Theme Colors --- */
+:root {
+  --drishti-navy: #032b7a;
+  --drishti-gold: #f4b41a;
+  --drishti-card-bg: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+}
+
+/* --- The "Perfect" Animation Classes --- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* Ultra-smooth curve */
+}
+
+.animate-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle Glow for Cards */
+.drishti-glass-card {
+  background: rgba(248, 245, 238, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
 .App {
   text-align: center;
 }
@@ -35,4 +76,79 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+/* Ensure these are at the top of App.css so all pages can use them */
+.animate-on-scroll {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-down { transform: translateY(-40px); }
+.slide-up { transform: translateY(50px); }
+
+.animate-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.drishti-gradient-bg {
+  background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+}
+
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.18;
+  z-index: 0;
+}
+
+.shape1 {
+  width: 240px;
+  height: 240px;
+  background: #2f62ff;
+  top: 40px;
+  left: -80px;
+}
+
+.shape2 {
+  width: 220px;
+  height: 220px;
+  background: #1f49d8;
+  bottom: 90px;
+  right: -70px;
+}
+
+.shape3 {
+  width: 180px;
+  height: 180px;
+  background: #f4b41a;
+  bottom: -60px;
+  left: 70px;
+  opacity: 0.22;
+}
+
+.gold-line {
+  position: absolute;
+  border: 2px solid transparent;
+  border-top-color: rgba(244, 180, 26, 0.8);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.gold-line1 {
+  width: 500px;
+  height: 250px;
+  top: -40px;
+  left: -120px;
+  transform: rotate(8deg);
+}
+
+.gold-line2 {
+  width: 540px;
+  height: 240px;
+  bottom: -40px;
+  right: -120px;
+  transform: rotate(-10deg);
 }

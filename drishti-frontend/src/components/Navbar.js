@@ -1,45 +1,54 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import drishtiLogo from './drishtilogo.png';
-
-
 
 const Navbar = () => {
   return (
-    
-    <nav className="flex justify-between items-center px-8 py-3 max-w-7xl mx-auto bg-white sticky top-0 z-50">
+    // Background set to #0f172a (slate-900)
+    // Border set to #facc15 (yellow-400) with low opacity for a clean look
+    <nav className="fixed top-0 left-0 w-full h-20 flex justify-between items-center px-12 bg-[#0f172a] border-b border-[#facc15]/30 z-[1000] shadow-xl">
 
-      {/* Combined Logo & Text Section */}
+      {/* Brand Section */}
       <Link to="/" className="flex items-center gap-3 group">
-        <div className="relative">
-          <img
-            src={drishtiLogo}
-            alt="DRISHTI Logo"
-            className="h-14 w-auto object-contain rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-
-        {/* Brand Text - Matching the style of your logo */}
-        <div className="flex flex-col leading-none">
-          <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase">
-            DRISHTI<span className="text-blue-600"></span>
-          </span>
-        </div>
+        <img
+          src={drishtiLogo}
+          alt="DRISHTI Logo"
+          className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+        />
+        <span className="text-2xl font-black tracking-tighter text-[#facc15] uppercase">
+          DRISHTI
+        </span>
       </Link>
 
       {/* Navigation Links */}
-      <div className="hidden md:flex space-x-10 font-semibold text-gray-600 items-center">
-        <Link to="/courses" className="hover:text-blue-600 transition-colors">Course</Link>
-        <Link to="/about" className="hover:text-blue-600 transition-colors">About</Link>
-       
-        <Link to="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
+      <div className="hidden md:flex space-x-10 font-bold items-center uppercase text-[11px] tracking-widest">
+        {[
+          { name: 'Home', path: '/' },
+          { name: 'Course', path: '/courses' },
+          { name: 'About', path: '/about' },
+          { name: 'Contact', path: '/contact' }
+        ].map((link) => (
+          <NavLink
+            key={link.name}
+            to={link.path}
+            className={({ isActive }) =>
+              `transition-all duration-300 py-1 ${
+                isActive
+                ? "text-[#facc15] border-b-2 border-[#facc15]"
+                : "text-slate-400 hover:text-[#facc15]"
+              }`
+            }
+          >
+            {link.name}
+          </NavLink>
+        ))}
       </div>
 
-      {/* Action Button */}
-      <div className="flex items-center gap-4">
+      {/* Action Button - Yellow Background with Slate Text */}
+      <div className="flex items-center">
         <Link
           to="/login"
-          className="bg-[#c2185b] text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-700 transition-all shadow-md hover:shadow-blue-200/50 active:scale-95 text-sm"
+          className="bg-[#facc15] text-[#0f172a] px-8 py-2.5 rounded-full font-black hover:bg-white transition-all shadow-lg active:scale-95 text-[11px] uppercase tracking-widest"
         >
           Login / Register
         </Link>
