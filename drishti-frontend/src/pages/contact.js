@@ -2,12 +2,58 @@ import React from "react";
 import "./contact.css";
 import Navbar from "../components/Navbar";
 import girlImg from "../assets/girl-study.png.png";
+// If the above doesn't work, you may need to rename the image file to remove the double extension
+
+// TEAM DATA (can later move to backend)
+const teamMembers = [
+  {
+    name: "Yadu Krishnan M.S",
+    role: "Project Coordinator & Communication Lead",
+    bio: "Leads project coordination and manages communication across the team.",
+    phone: "9605019474",
+    email: "yadukrishnandrishti@proton.me",
+    img: require("../assets/team1.jpg"),
+  },
+  {
+    name: "Sreelakshmi Subhash",
+    role: "Digital Outreach & Research Coordinator",
+    bio: "Handles outreach strategies and coordinates research activities.",
+    phone: "7736727710",
+    email: "sreelakshmisubash0611@gmail.com",
+    img: require("../assets/team2.jpg"),
+  },
+  {
+    name: "Devika B",
+    role: "Documentation & Knowledge Manager",
+    bio: "Manages documentation and ensures proper knowledge organization.",
+    phone: "9778581124",
+    email: "devikab905@gmail.com",
+    img: require("../assets/team3.jpg"),
+  },
+  {
+    name: "Padmanabhan MJ",
+    role: "Financial Literacy Facilitator & Media Coordinator",
+    bio: "Focuses on financial awareness programs and media coordination.",
+    phone: "8281758375",
+    email: "padmanabhanmj10@gmail.com",
+    img: require("../assets/team4.jpg"),
+  },
+  {
+    name: "Vandana A",
+    role: "Activity Design Facilitator & Finance Coordinator",
+    bio: "Designs activities and assists in financial coordination.",
+    phone: "8075885644",
+    email: "vandanaas2005@gmail.com",
+    img: require("../assets/team5.jpg"),
+  },
+];
 
 const Contact = () => {
   return (
     <div className="contact-page">
       <Navbar />
 
+      {/* Background */}
       <div className="bg-shape shape1"></div>
       <div className="bg-shape shape2"></div>
       <div className="bg-shape shape3"></div>
@@ -15,17 +61,17 @@ const Contact = () => {
       <div className="gold-line gold-line2"></div>
 
       <main className="contact-main">
-        {/* Top Section */}
+        {/* TOP SECTION */}
         <section className="top-grid">
-          {/* Left Side */}
           <div className="left-col fade-up">
             <h1 className="main-title">
               Contact <span>Us</span>
             </h1>
             <div className="title-line"></div>
+
             <p className="main-subtitle">
-              We’d love to hear from you. Reach out for inquiries, suggestions,
-              or collaborations.
+              We’d love to hear from you. Reach out for inquiries,
+              suggestions, or collaborations.
             </p>
 
             <div className="touch-card">
@@ -67,11 +113,10 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Side */}
+          {/* RIGHT */}
           <div className="right-col fade-up delay-1">
             <div className="girl-card float-card">
               <img src={girlImg} alt="Girl" className="girl-img" />
-
               <div className="floating bubble-blue">📞</div>
               <div className="floating bubble-gold">✉️</div>
               <div className="floating bubble-chat">💬</div>
@@ -111,7 +156,7 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Bottom Section */}
+        {/* BOTTOM SECTION */}
         <section className="bottom-grid">
           <div className="visit-block fade-up delay-2">
             <h3 className="section-title">
@@ -125,60 +170,46 @@ const Contact = () => {
                   width="100%"
                   height="230"
                   style={{ border: 0 }}
-                  allowFullScreen=""
                   loading="lazy"
                   className="map-iframe"
-                  title="Drishti Location"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Location"
                 ></iframe>
-
-                <div className="map-tag">
-                  <div className="map-pin">📍</div>
-                  <div>
-                    <h4>Drishti’s Location</h4>
-                    <p>Amrita Vishwa Vidyapeetham,</p>
-                    <p>Amritapuri</p>
-                  </div>
-                </div>
               </div>
-
-              <a
-                href="https://maps.google.com/?q=Amrita Vishwa Vidyapeetham Amritapuri"
-                target="_blank"
-                rel="noreferrer"
-                className="map-link-text"
-              >
-                View on Google Maps
-              </a>
             </div>
           </div>
 
           <div className="connect-card fade-up delay-3">
             <div className="connect-glow"></div>
-
             <div className="connect-head">
-              <div className="connect-icon pulse-icon">🤝</div>
+              <div className="connect-icon">🤝</div>
               <h3>Let’s Connect</h3>
             </div>
 
             <p>
-              We’re always happy to hear from students, learners, and
-              collaborators.
+              We’re always happy to hear from students, learners,
+              and collaborators.
             </p>
+          </div>
+        </section>
 
-            <ul>
-              <li>
-                <span className="tick">✓</span> Quick responses
-              </li>
-              <li>
-                <span className="tick">✓</span> Open for collaborations
-              </li>
-              <li>
-                <span className="tick">✓</span> Student-friendly support
-              </li>
-            </ul>
+        {/* TEAM SECTION */}
+        <section className="team-section fade-up">
+          <h2 className="team-title">
+            Meet Our <span>Team</span>
+          </h2>
 
-            
+          <div className="team-grid">
+            {teamMembers.map((member, index) => (
+              <div className="team-card" key={index}>
+                <div className="team-img-wrapper">
+                  <img src={member.img} alt={member.name} />
+                </div>
+
+                <h3>{member.name}</h3>
+                <p className="role">{member.role}</p>
+                <p className="bio">{member.bio}</p>
+              </div>
+            ))}
           </div>
         </section>
       </main>
