@@ -1,6 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { supabase } from '../SupabaseClient';
 
 const BookingModal = ({ isOpen, onClose, courseTitle }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleBooking = async () => {
+    setIsSubmitting(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        alert("Please log in first!");
+        setIsSubmitting(false);
+        return;
+      }
+      const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
+
+      const bookingData = {
+        orgId: user.id,
+        schoolName: profile?.full_name || 'Unknown School',
+        courseName: courseTitle,
+        // status will default to PENDING in Spring Boot
+      };
+
+      // Calling your new Spring Boot Controller
+      const response = await fetch('http://localhost:8080/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingData)
+      });
+
+      if (response.ok) {
+        alert("Request sent! Check your dashboard for approval.");
+        onClose();
+      } else {
+        alert("Something went wrong");
+      }
+    } catch(err) {
+      console.error(err);
+    }
+    setIsSubmitting(false);
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -56,10 +96,11 @@ const BookingModal = ({ isOpen, onClose, courseTitle }) => {
           </div>
 
           <button
-            onClick={() => { alert("Request Sent to Portal Admin!"); onClose(); }}
-            className="w-full bg-[#032b7a] py-5 rounded-2xl text-white font-black uppercase tracking-widest hover:bg-[#f4b41a] hover:text-[#032b7a] hover:shadow-xl hover:shadow-yellow-500/20 transition-all active:scale-95"
+            onClick={handleBooking}
+            disabled={isSubmitting}
+            className="w-full bg-[#032b7a] py-5 rounded-2xl text-white font-black uppercase tracking-widest hover:bg-[#f4b41a] hover:text-[#032b7a] hover:shadow-xl hover:shadow-yellow-500/20 transition-all active:scale-95 disabled:opacity-50"
           >
-            Submit Booking Request
+            {isSubmitting ? "Submitting..." : "Submit Booking Request"}
           </button>
         </div>
       </div>

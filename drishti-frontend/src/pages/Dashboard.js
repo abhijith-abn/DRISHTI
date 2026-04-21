@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const [profile, setProfile] = useState(null);
   const [bookedSlots, setBookedSlots] = useState([]);
+  const [myBookings, setMyBookings] = useState([]); // <--- added
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -26,13 +27,25 @@ const Dashboard = () => {
 
       setProfile(profileData);
 
-      // 3. Get Slots/Bookings related to this user
-      const { data: slotsData } = await supabase
-        .from('course_slots')
-        .select('*')
-        .eq('booked_by', user.id);
+      if (profileData?.role === 'INSTITUTION') {
+        // Fetch new Spring Boot endpoint
+        try {
+          const response = await fetch(`http://localhost:8080/api/bookings/user/${user.id}`);
+          if (response.ok) {
+            const data = await response.json();
+            setMyBookings(data);
+          }
+        } catch(err) { console.error(err); }
+      } else {
+        // 3. Get Slots/Bookings related to this user
+        const { data: slotsData } = await supabase
+          .from('course_slots')
+          .select('*')
+          .eq('booked_by', user.id);
 
-      setBookedSlots(slotsData || []);
+        setBookedSlots(slotsData || []);
+      }
+      
       setLoading(false);
     };
 
@@ -118,15 +131,25 @@ const Dashboard = () => {
           {/* Status for Institution Admins */}
           {profile?.role === 'INSTITUTION' && (
             <div className="bg-[#facc15]/5 border border-[#facc15]/20 p-8 rounded-[2.5rem]">
-              <h3 className="text-[#facc15] font-black uppercase text-sm tracking-widest mb-4">Offline Request Status</h3>
+              <h3 className="text-[#facc15] font-black uppercase text-sm tracking-widest mb-4">Institutional Requests</h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                  <span className="text-xs text-slate-400">Campus Visit</span>
-                  <span className="text-[10px] font-black bg-orange-500/20 text-orange-400 px-2 py-1 rounded">PENDING</span>
-                </div>
-                <p className="text-[11px] text-slate-500 leading-relaxed italic">
-                  "Our admin is reviewing your school's request for the May 12th session. Check back tomorrow."
-                </p>
+                {myBookings.length === 0 ? <p className="text-slate-500 italic text-sm">No requests found.</p> : null}
+                {myBookings.map(booking => (
+                  <div key={booking.id} className="flex flex-col gap-3 py-4 border-b border-[#facc15]/10 last:border-0">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <span className="text-sm font-black uppercase tracking-widest text-white">{booking.courseName}</span>
+                        </div>
+                        {booking.status === 'PENDING' ? (
+                          <span className="text-yellow-500 font-bold text-xs uppercase tracking-widest">Awaiting Approval...</span>
+                        ) : (
+                          <a href={booking.meetingLink || '#'} target="_blank" rel="noreferrer" className="text-[10px] font-black bg-[#facc15] text-slate-900 px-4 py-2 rounded-lg uppercase tracking-widest hover:bg-white transition-all">
+                            Join Google Meet
+                          </a>
+                        )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
