@@ -1,13 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-import openai
+from openai import OpenAI
 import os
 
-# Initialize FastAPI App
 app = FastAPI()
 
-# Allow CORS since Spring Boot or React might call it directly (if changed later)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,8 +14,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Put your OpenAI key here or in an environment variable OPENAI_API_KEY
-openai.api_key = os.getenv("OPENAI_API_KEY", "YOUR_OPENAI_API_KEY_HERE")
+# NVIDIA Client Setup
+client = OpenAI(
+    base_url="https://nvidia.com",
+    api_key="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" # Replace with your copied key
+)
 
 class ChatRequest(BaseModel):
     message: str
@@ -28,19 +29,27 @@ class ChatResponse(BaseModel):
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat_endpoint(req: ChatRequest):
     try:
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
+        response = client.chat.completions.create(
+            # Swapped to your preferred reasoning model
+            model="nvidia/nemotron-3-nano-omni-30b-a3b-reasoning", 
             messages=[
-                {"role": "system", "content": "You are DRISHTI AI, a helpful and smart assistant for a commerce-focused course platform. Answer concisely and professionally."},
+                {
+                    "role": "system", 
+                    "content": "You are DRISHTI AI, a helpful commerce assistant. Answer concisely."
+                },
                 {"role": "user", "content": req.message}
-            ]
+            ],
+            temperature=1.0, # Reasoning models often perform better at 1.0
+            max_tokens=1024
         )
+        
         reply_text = response.choices[0].message.content
         return {"reply": reply_text}
+
     except Exception as e:
         print(f"Error: {e}")
-        raise HTTPException(status_code=500, detail="Failed to connect to OpenAI")
+        raise HTTPException(status_code=500, detail="NVIDIA Reasoning Model Error")
 
 @app.get("/")
 def read_root():
-    return {"status": "ok", "message": "DRISHTI AI is running."}
+    return {"status": "ok", "message": "DRISHTI AI (Nemotron-Reasoning) is running."}

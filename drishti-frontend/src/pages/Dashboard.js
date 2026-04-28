@@ -137,16 +137,25 @@ const Dashboard = () => {
                 {myBookings.map(booking => (
                   <div key={booking.id} className="flex flex-col gap-3 py-4 border-b border-[#facc15]/10 last:border-0">
                     <div className="flex justify-between items-start">
-                        <div>
-                            <span className="text-sm font-black uppercase tracking-widest text-white">{booking.courseName}</span>
+                      <div>
+                        <span className="text-sm font-black uppercase tracking-widest text-white">{booking.courseName}</span>
+                        <div className="text-xs text-slate-400 mt-1">
+                          <p>Venue: {booking.venueType || 'Not specified'}</p>
+                          <p>Students: {booking.studentCount || 'Not specified'}</p>
+                          <p>Dates: {booking.preferredDates || 'Not specified'}</p>
                         </div>
-                        {booking.status === 'PENDING' ? (
-                          <span className="text-yellow-500 font-bold text-xs uppercase tracking-widest">Awaiting Approval...</span>
-                        ) : (
-                          <a href={booking.meetingLink || '#'} target="_blank" rel="noreferrer" className="text-[10px] font-black bg-[#facc15] text-slate-900 px-4 py-2 rounded-lg uppercase tracking-widest hover:bg-white transition-all">
-                            Join Google Meet
-                          </a>
-                        )}
+                      </div>
+                      {booking.status === 'PENDING' ? (
+                        <span className="text-yellow-500 font-bold text-xs uppercase tracking-widest">Awaiting Approval...</span>
+                      ) : booking.status === 'PROCESSING' ? (
+                        <span className="text-blue-500 font-bold text-xs uppercase tracking-widest">Processing...</span>
+                      ) : booking.status === 'APPROVED' ? (
+                        <a href={booking.meetingLink || '#'} target="_blank" rel="noreferrer" className="text-[10px] font-black bg-[#facc15] text-slate-900 px-4 py-2 rounded-lg uppercase tracking-widest hover:bg-white transition-all">
+                          Join Google Meet
+                        </a>
+                      ) : (
+                        <span className="text-red-500 font-bold text-xs uppercase tracking-widest">Rejected</span>
+                      )}
                     </div>
                   </div>
                 ))}

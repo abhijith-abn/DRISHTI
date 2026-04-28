@@ -38,6 +38,15 @@ public class CourseBooking {
     @Column
     private String approvedDate;
 
+    @Column
+    private String venueType;
+
+    @Column
+    private String studentCount;
+
+    @Column
+    private String preferredDates;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;

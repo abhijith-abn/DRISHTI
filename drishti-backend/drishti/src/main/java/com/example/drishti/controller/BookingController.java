@@ -35,6 +35,19 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.approveBooking(id, meetingLink));
     }
 
+    @PatchMapping("/reject/{id}")
+    public ResponseEntity<CourseBooking> rejectBooking(@PathVariable Long id) {
+        return ResponseEntity.ok(bookingService.rejectBooking(id));
+    }
+
+    @PatchMapping("/status/{id}")
+    public ResponseEntity<CourseBooking> updateStatus(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> payload) {
+        String status = payload.get("status");
+        return ResponseEntity.ok(bookingService.updateStatus(id, status));
+    }
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<CourseBooking>> getUserBookings(@PathVariable UUID userId) {
         return ResponseEntity.ok(bookingService.getBookingsByUserId(userId));

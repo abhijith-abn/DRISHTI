@@ -17,6 +17,7 @@ public class CourseSlot {
     private Long id;
 
     @Column(name = "is_booked")
+    @Builder.Default
     private Boolean isBooked = false;
 
     @Column(name = "booked_by")

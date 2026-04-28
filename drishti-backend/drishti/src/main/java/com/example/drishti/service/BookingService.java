@@ -33,6 +33,23 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
+    public CourseBooking rejectBooking(Long id) {
+        CourseBooking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Booking not found with id: " + id));
+        booking.setStatus("REJECTED");
+        return bookingRepository.save(booking);
+    }
+
+    public CourseBooking updateStatus(Long id, String status) {
+        CourseBooking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Booking not found with id: " + id));
+        booking.setStatus(status);
+        if ("APPROVED".equals(status)) {
+            booking.setApprovedDate(LocalDate.now().toString());
+        }
+        return bookingRepository.save(booking);
+    }
+
     public List<CourseBooking> getBookingsByUserId(UUID userId) {
         // We use orgId to map userId since no separate userId was specified in the entity.
         return bookingRepository.findByOrgId(userId);
