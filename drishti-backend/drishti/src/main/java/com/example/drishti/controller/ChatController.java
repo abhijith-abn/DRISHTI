@@ -14,7 +14,7 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class ChatController {
 
-    private final String pythonApiUrl = "http://localhost:5000/api/chat";
+    private final String pythonApiUrl = "http://localhost:8000/api/chat";
     private final RestTemplate restTemplate = new RestTemplate();
 
     @PostMapping

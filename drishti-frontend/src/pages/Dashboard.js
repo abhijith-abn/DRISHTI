@@ -30,7 +30,7 @@ const Dashboard = () => {
       if (profileData?.role === 'INSTITUTION') {
         // Fetch new Spring Boot endpoint
         try {
-          const response = await fetch(`http://localhost:8080/api/bookings/user/${user.id}`);
+          const response = await fetch(`http://localhost:8082/api/bookings/user/${user.id}`);
           if (response.ok) {
             const data = await response.json();
             setMyBookings(data);

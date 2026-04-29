@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
     // 1. Fetch School Requests from Spring Boot Controller
     try {
-      const resp = await fetch('http://localhost:8080/api/bookings/pending');
+      const resp = await fetch('http://localhost:8082/api/bookings/pending');
       if (resp.ok) {
         const data = await resp.json();
         setPendingRequests(data);
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
 
   const fetchPendingRequests = async () => {
     try {
-      const resp = await fetch('http://localhost:8080/api/bookings/pending');
+      const resp = await fetch('http://localhost:8082/api/bookings/pending');
       if (resp.ok) {
         const data = await resp.json();
         setPendingRequests(data);
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
 
   // 2. Approve Institutional Request
   const approveRequest = async (id, gMeetLink) => {
-    const response = await fetch(`http://localhost:8080/api/bookings/approve/${id}`, {
+    const response = await fetch(`http://localhost:8082/api/bookings/approve/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ meetingLink: gMeetLink })
@@ -97,9 +97,9 @@ const AdminDashboard = () => {
 
   // 2b. Reject Institutional Request
   const rejectRequest = async (id) => {
-    if (!confirm("Are you sure you want to reject this request?")) return;
+    if (!window.confirm("Are you sure you want to reject this request?")) return;
 
-    const response = await fetch(`http://localhost:8080/api/bookings/reject/${id}`, {
+    const response = await fetch(`http://localhost:8082/api/bookings/reject/${id}`, {
       method: 'PATCH'
     });
 
@@ -112,7 +112,7 @@ const AdminDashboard = () => {
 
   // 2c. Update Status to Processing
   const setProcessing = async (id) => {
-    const response = await fetch(`http://localhost:8080/api/bookings/status/${id}`, {
+    const response = await fetch(`http://localhost:8082/api/bookings/status/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: 'PROCESSING' })

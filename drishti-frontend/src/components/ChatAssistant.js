@@ -14,7 +14,7 @@ const ChatAssistant = () => {
     setInput('');
 
     try {
-      const res = await axios.post("http://localhost:8080/api/chat", { message: input });
+      const res = await axios.post("http://localhost:8082/api/chat", { message: input });
       setMessages(prev => [...prev, { role: 'ai', text: res.data.reply }]);
     } catch (err) {
       setMessages(prev => [...prev, { role: 'ai', text: "Sorry, I'm having trouble connecting right now." }]);
